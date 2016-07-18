@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+.container_menu{
+	margin-top: 5px;
+	background: white;
+	padding: 0px;
+}
+table td{
+	padding: 10px;
+	background: white;
+}

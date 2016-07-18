@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact</title>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/menu.css" rel="stylesheet">
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+<style type="text/css">
+	.content{
+		font-family: &#39;Times New Roman&#39;, Times, serif; 
+		font-size:13px; 
+		margin-left:5px;
+		margin-top:16px; 
+		color:black;
+		font-weight: bold;
+	}
+	.iw_poi_title {
+		color:#CC5522;
+		font-size:14px;
+		font-weight:bold;
+		overflow:hidden;
+		padding-right:13px;
+		white-space:nowrap
+	}
+    .iw_poi_content {
+    	font:12px arial,sans-serif;
+    	overflow:visible;
+    	padding-top:4px;
+    	white-space:-moz-pre-wrap;
+    	word-wrap:break-word
+    }
+    #dituContent{
+    	margin-bottom: 100px;
+    }
+</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 container_menu">
+				<img alt="" src="img/menu_camber.png">
+				<table class="col-md-12">
+					<tbody>
+						<tr>
+							<td>
+								<a href="home.html">
+									<img alt="" src="img/menu_home.png">
+								</a>
+							</td>
+							<td>
+								<a href="about.html">
+									<img alt="" src="img/menu_about.png">
+								</a>
+							</td>
+							<td>
+								<a href="service.html">
+									<img alt="" src="img/menu_service.png">
+								</a>
+							</td>
+							<td>
+								<a href="client.html">
+									<img alt="" src="img/menu_client.png">
+								</a>
+							</td>
+							<td>
+								<a href="portfolio.html">
+									<img alt="" src="img/menu_portfolio.png">
+								</a>
+							</td>
+							<td>
+								<a href="career.html">
+									<img alt="" src="img/menu_career.png">
+								</a>
+							</td>
+							<td>
+								<a href="contact.html">
+									<img alt="" src="img/menu_contact_checked.png">
+								</a>
+							</td>
+							<td>
+								<a href="#">
+									<img alt="" src="img/menu_news.png">
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<img alt="" src="img/menu_line.png" width="100%">
+				<span style="font-family: &#39;Arial Black&#39;, Gadget, sans-serif; font-weight:bold; font-size:26px; margin-left:5px;">CONTACT</span>
+				<div class="content">
+					<p>
+						Address:Camber Interior No.1 1st F,11# Building,Liulitun,Chaoyang District,Beijing China;<br/>
+						Tel:86-10-65863386;<br/>
+						Fax:86-10-65863391;<br/>
+						E-mail:Marketing@camber.com.cn;<br>
+						Website:http://www.camber.com.cn;<br/>
+						By bus:take 302,350,406,431,499,502,672,673,675,686,729,731,750,758,973,976,988 and get off at Chaoyanggongyuanqiaoxi station.						
+					</p>
+				</div>
+				<!--  地图-->
+				<div style="width:95%;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(116.512142,39.943038);//定义一个中心点坐标
+        map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"Camber",content:"我在这等你哟",point:"116.512672|39.942734",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+</html>
