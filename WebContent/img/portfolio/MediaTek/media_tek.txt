@@ -1,0 +1,8 @@
+LOCATION：F9-11 RAYCOM CENTER
+Server room design：
+1. Two sets of Cable-head protection cabinets, five server racks, the total power volume is 2x350KW.
+2. Three 120KVA UPS units, double conversion N+1 Parallel Operation.
+3. 28 standard server racks, all powered by industrial connectors.
+4. Two sets of Daikin VRVIII individual A/C system in the server room, with an air volume of 2x120KW.
+5. Carbon Dioxide Fire Fighting: American brand ANAUL-Inergen.
+6. Server room environment supervision: American brand Sensaphone/IMS-4000 series.
