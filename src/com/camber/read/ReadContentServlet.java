@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,62 +24,58 @@ import org.json.JSONObject;
  */
 public class ReadContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String imgPath = "/Users/xiedong/Documents/tupian/MeiNv/";
-
+	private final static String BashPath = "/Users/tangyx/Documents/eclipseJavaWeb/Work/Camber/WebContent/img/";
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("程序来了，快跑");
 		String menu = request.getParameter("menu");
+		String title = request.getParameter("title");
+		String callback = request.getParameter("callback");
 		StringBuilder sb = new StringBuilder();
-		String path = "";
-		JSONObject json = new JSONObject();
-		PrintWriter out = response.getWriter();
-		if ("about".equals(menu)) {
-			path = "/Users/xiedong/Desktop/about.txt";
-		} else if ("service".equals(menu)) {
-			path = "/Users/xiedong/Desktop/service.txt";
-		} else if ("career".equals(menu)) {
-			path = "/Users/xiedong/Desktop/career.txt";
-		} else if ("contact".equals(menu)) {
-			path = "/Users/xiedong/Desktop/contact.txt";
-		} else {
-			System.out.println("当前传的值：" + menu);
-			return;
+		String path;
+		String imgPath;
+		if(title==null){
+			path = BashPath+menu+File.separator+menu+".txt";
+			imgPath = BashPath+menu;
+		}else{
+			path = BashPath+menu+File.separator+title+File.separator+title+".txt";
+			imgPath = BashPath+menu+File.separator+title;
 		}
+		System.out.println("txt path:"+path+"\nimg path"+imgPath+"\n"+callback);
 		sb = readData(path);
-		List<String> list = getImgName(imgPath);
-		for (String l : list) {
-			System.out.println(l);
-		}
+		JSONArray array = getImgName(imgPath);
 		try {
-			json.put("font", sb);
-			json.put("img", list);
+			JSONObject json = new JSONObject();
+			json.put("content",sb);
+			json.put("img", array);
+			PrintWriter out = response.getWriter();
+			out.write(callback+"("+json.toString()+")");
+			out.flush();
+			out.close();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		out.write(json.toString());
-		out.flush();
-		out.close();
-		System.out.println(sb.toString());
 	}
 
 	/**
 	 * 读取内容
 	 */
 	private StringBuilder readData(String path) {
+		File file = new File(path);
+		if(!file.exists()){
+			return null;
+		}
 		BufferedReader br = null;
 		StringBuilder sb = new StringBuilder();
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
 			String s = "";
 			while ((s = br.readLine()) != null) {
+				s+="<br/>";
 				sb.append(s);
-				// sb.append("\n");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -97,19 +94,23 @@ public class ReadContentServlet extends HttpServlet {
 	/**
 	 * 获取图片名字
 	 */
-	private List<String> getImgName(String path) {
+	private JSONArray getImgName(String path) {
 		File file = new File(path);
-		List<String> imgList = new ArrayList<String>();
+		JSONArray imgList = new JSONArray();
 		if (file.isDirectory()) {
 			File[] listFiles = file.listFiles();
 			for (File list : listFiles) {
 				String listName = list.getName();
 				String name = listName.toLowerCase();
 				if (name.contains(".jpg") || name.contains(".png") || name.contains(".gif")) {
-					imgList.add(name);
+					imgList.put(name);
 				}
 			}
 		}
 		return imgList;
+	}
+	public static void main(String[] args) {
+		ReadContentServlet readContentServlet = new ReadContentServlet();
+		System.out.println(readContentServlet.readData(BashPath+"about"+File.separator+"about"+".txt"));
 	}
 }

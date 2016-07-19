@@ -1,0 +1,7 @@
+Camber's design starts with the designers' understanding the client.We study your business,your culture,
+and your version,we will consider your staff and functional requirements into our design.
+
+*Layout design(software involved:CAD drawings)
+*Perspective image/video(software involved:3Dmax;Lightscape;Photoshop;Flash)
+*M/E design;the design of power system;IT system;Cabling system;Service room;Data & Voice system;
+Air conditioning system

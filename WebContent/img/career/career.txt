@@ -3,7 +3,7 @@ join our professional team. Helping our people explore their
 value in to full advantage has always been put on the top of
 our list. Either experienced professionals or school graduates
 may find your ideal position in the Camber matrix. To join us,
-you may send your Curriculum Vitae to hr@camber.com.cn
+you may send your Curriculum Vitae to <span style="font-weight:bold; color:#000;"><a href="mailto:hr@camber.com.cn">hr@camber.com.cn</a></span>
 indicating your personal details; your area of expertise; and
 your work experience. Camber will review your application
 and respond accordingly.
