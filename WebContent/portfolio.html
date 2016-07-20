@@ -8,6 +8,7 @@
 <link href="css/menu.css" rel="stylesheet">
 <link rel="stylesheet"  href="css/zoom.css" media="all" />
 <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/share.js"></script>
 <script type="text/javascript" src="js/portfolio.js"></script>
 <style type="text/css">
 	.checked_portfolio{
@@ -21,9 +22,13 @@
 	.left_menu li{
 		font-size: 12px;
 		margin-top:5px;
-		color: black;
 	}
 	.left_menu li:HOVER {
+		cursor: pointer;
+		color: #b76166;
+		text-decoration: underline;
+	}
+	.lichecked{
 		cursor: pointer;
 		color: #b76166;
 		text-decoration: underline;
@@ -41,7 +46,9 @@
 		font-family: &#39;Times New Roman&#39;, Times, serif; 
 		font-size: 11px; 
 		padding-left:2px;
-		margin-bottom: 100px;
+	}
+	.hitachi{
+		font-size: 12px;
 	}
 </style>
 </head>
@@ -104,7 +111,7 @@
 				                PORTFOLIO
 				            </font>
 				            <ul class="left_menu">
-				            	<li title="AES">
+				            	<li title="AES" class="lichecked">
 				            		AES
 				            	</li>
 				            	<li title="BAYER">
@@ -140,7 +147,7 @@
 				            	<li title="MicroSoftChina">
 				            		MicroSoft(China)
 				            	</li>
-				            	<li title="BostonConsultingGroup">
+				            	<li title="TheBostonConsultingGroup">
 				            		The Boston Consulting Group
 				            	</li>
 				            	<li title="TunisianNationalTouristOffice">
@@ -152,37 +159,32 @@
 			            	<img src="img/portfolio_line.png">
 						</div>
 					</div>
-					<div align="left" class="col-md-8">
+					<div align="left" style="padding-bottom: 100px" class="col-md-8">
 						<div>
-							<ul class="gallery">
-								<li>
-									<a href="img/portfolio/AES/aes_01.gif">
-										<img class="item img-thumbnail" src="img/portfolio/AES/aes_01.gif">
-									</a>
-								</li>
-								<li>
-									<a href="img/portfolio/AES/aes_02.gif"><img class="item img-thumbnail" src="img/portfolio/AES/aes_02.gif"></a>
-								</li>
-								<li>
-									<a href="img/portfolio/AES/aes_03.gif"><img class="item img-thumbnail" src="img/portfolio/AES/aes_03.gif"></a>
-								</li>
-								<li>
-									<a href="img/portfolio/AES/aes_04.gif"><img class="item img-thumbnail" src="img/portfolio/AES/aes_04.gif"></a>
-								</li>
-								<li>
-									<a href="img/portfolio/AES/aes_05.gif"><img class="item img-thumbnail" src="img/portfolio/AES/aes_05.gif"></a>
-								</li>
-								<li>
-									<a href="img/portfolio/AES/aes_06.gif"><img class="item img-thumbnail" src="img/portfolio/AES/aes_06.gif"></a>
-								</li>
-							</ul>
+							<ul class="gallery"></ul>
 						</div>
-						<p class="content">
-							‘We take the nature as the foundation’says the world’s leading power generation group......... <br>
-							‘Nature oriented, people centered’is AES’s dedication to their business. Our designer uses the name‘empowered by nature’<br>
-							 &nbsp;&nbsp;to describe her design intent. Throughout the design process,our designer adopts this concept into every detail, such as the <br>
-							 &nbsp;&nbsp;selection of materials and the shape of the features.
-						</p>
+						<div class="content">
+						</div>
+						<div class="hitachi hide">
+							<p class="pull-left" style="padding-right:10px">
+								<img alt="" class="img-thumbnail" src="img/portfolio/HITACHI/hitachi_01.png">
+							</p>
+							<p>
+								“The designer made use of contrasting colors,
+								simple geometric design and minimalistic
+								applications to reinforce the clien’s corporate
+								identity as a leader in technology. An example
+								of this can be seen in the stainless steel beam
+								guiding people’s attention to the HITACHI world.”
+							</p>
+							<br/>
+							<p class="pull-right">
+								<img alt="" class="img-thumbnail" src="img/portfolio/HITACHI/hitachi_02.png">
+							</p>
+							<p style="padding-left: 10px">
+								The designer keeps the whole spatial integrity by combining down lights and hidden ‘light strips’ on the ceiling .Apart from the overall appearance, the lighting system can be controlled in different modes for video conference or projector presentation. The designer adds a piece of intelligent technology to make this meeting room more user-oriented.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +32,6 @@ public class ReadContentServlet extends HttpServlet {
 		String menu = request.getParameter("menu");
 		String title = request.getParameter("title");
 		String callback = request.getParameter("callback");
-		StringBuilder sb = new StringBuilder();
 		String path;
 		String imgPath;
 		if(title==null){
@@ -45,11 +42,11 @@ public class ReadContentServlet extends HttpServlet {
 			imgPath = BashPath+menu+File.separator+title;
 		}
 		System.out.println("txt path:"+path+"\nimg path"+imgPath+"\n"+callback);
-		sb = readData(path);
+		String content = readData(path);
 		JSONArray array = getImgName(imgPath);
 		try {
 			JSONObject json = new JSONObject();
-			json.put("content",sb);
+			json.put("content",content);
 			json.put("img", array);
 			PrintWriter out = response.getWriter();
 			out.write(callback+"("+json.toString()+")");
@@ -63,10 +60,10 @@ public class ReadContentServlet extends HttpServlet {
 	/**
 	 * 读取内容
 	 */
-	private StringBuilder readData(String path) {
+	private String readData(String path) {
 		File file = new File(path);
 		if(!file.exists()){
-			return null;
+			return "";
 		}
 		BufferedReader br = null;
 		StringBuilder sb = new StringBuilder();
@@ -88,7 +85,7 @@ public class ReadContentServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		return sb;
+		return sb.toString();
 	}
 
 	/**
