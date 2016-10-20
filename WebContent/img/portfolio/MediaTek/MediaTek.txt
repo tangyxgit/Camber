@@ -1,5 +1,5 @@
-LOCATIONï¼šF9-11 RAYCOM CENTER
-Server room designï¼š
+LOCATION£ºF9-11 RAYCOM CENTER
+Server room design£º
 1. Two sets of Cable-head protection cabinets, five server racks, the total power volume is 2x350KW.
 2. Three 120KVA UPS units, double conversion N+1 Parallel Operation.
 3. 28 standard server racks, all powered by industrial connectors.
